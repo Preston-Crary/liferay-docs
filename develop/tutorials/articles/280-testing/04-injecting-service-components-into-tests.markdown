@@ -1,8 +1,8 @@
-# Injecting Service Components into Tests
+# Injecting Service Components into Tests [](id=injecting-service-components-into-tests)
 
 Similar to using OSGi's `@Reference` annotation to inject service components
-into a module component, you can use an @product@'s `@Inject` annotation to
-inject them into a test.
+into a module component, you can use @product@'s `@Inject` annotation to inject
+them into a test.
 
 `@Inject` uses reflection to inject a field with a service component object
 matching the field's interface.
@@ -14,11 +14,10 @@ the `type` with it.
 
     `@Inject(type = SubClass.class)`
 
-Replace `SubClass` service interface to inject.
+Replace `SubClass` with the name of the service interface to inject.
 
 Here's an example test class that injects a `DDLServiceUpgrade` object into an `UpgradeStepRegistrator` interface field:
 
-```
     public class Test {
 
         @ClassRule
@@ -37,7 +36,12 @@ Here's an example test class that injects a `DDLServiceUpgrade` object into an `
         private static UpgradeStepRegistrator _upgradeStepRegistrator;
 
     }
-```
+
+Field `aggregateTestRule` applies a `LiferayIntegrationTestRule` instance to the class. 
+
+The `@Test` annotation marks method `testSomething` to be a test method. Test code belongs in it. 
+
+The `@Inject` annotation and its filter string parameter mark field `_upgradeStepRegistrator` to be injected with a `DDLServiceUpgrade` object. `DDLServiceUpgrade` implements the interface `UpgradeStepRegistrator`. 
 
 Here are the steps for injecting a service component into a test class:
 
@@ -67,9 +71,9 @@ regarding the test's unavailable dependencies.
 
 +$$$
 
-**Important**: If you publishing the service component you are injecting with
-`@Inject` annotation, the test might never be run. If you must publish
-the service component from the test class, use
+**Important**: If you're publishing the service component you are injecting with
+`@Inject` annotation, the test might never be run. If you must publish the
+service component from the test class, use
 [Service Trackers](/develop/tutorials/-/knowledge_base/7-0/service-trackers)
 to access service components.
 
@@ -77,7 +81,7 @@ $$$
 
 You've learned how easy it is to inject service components into your tests.
 
-## Related Articles
+## Related Articles [](id=related-articles)
 
 [Service Trackers](/develop/tutorials/-/knowledge_base/7-0/service-trackers)
 
